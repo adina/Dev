@@ -1,0 +1,31 @@
+#!/bin/bash -login
+#PBS -l walltime=48:00:00,nodes=01:ppn=8,mem=20gb
+#PBS -q main
+#PBS -M adina.chuang@gmail.com
+#PBS -m abe
+#PBS -A ged-intel11
+
+module load BLAST
+
+workingdir=/mnt/scratch/howead/hmp-mock/compare-assemblies/raw-diginorm
+cd $workingdir
+
+RAW=raw-contigs.fa.300.renamed
+KNOTS=diginorm-assembly.fa.300.renamed 
+GENES=mock.all.genome.fa.renamed
+
+blastall -i $RAW -d $GENES -o $RAW.x.$GENES.blastnout.m8 -p blastn -a 8 -m 8
+blastall -i $GENES -d $RAW -o $GENES.x.$RAW.blastnout.m8 -p blastn -a 8 -m 8
+
+blastall -i $KNOTS -d $GENES -o $KNOTS.x.$GENES.blastnout.m8 -p blastn -a 8 -m 8 
+blastall -i $GENES -d $KNOTS -o $GENES.x.$KNOTS.blastnout.m8 -p blastn -a 8 -m 8
+
+'''
+python ~/scripts/blast-calc-cover/calc-blast-cover2.py $RAW $GENES.x.$RAW.blastnout > $RAW.in.$GENES.coverage.txt
+
+python ~/scripts/blast-calc-cover/calc-blast-cover2.py $GENES $RAW.x.$GENES.blastnout > $GENES.in.$RAW.coverage.txt
+
+python ~/scripts/blast-calc-cover/calc-blast-cover2.py $KNOTS $GENES.x.$KNOTS.blastnout > $KNOTS.in.$GENES.coverage.txt
+
+python ~/scripts/blast-calc-cover/calc-blast-cover2.py $GENES $KNOTS.x.$GENES.blastnout > $GENES.in.$KNOTS.coverage.txt
+'''

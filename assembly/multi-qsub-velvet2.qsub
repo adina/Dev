@@ -1,0 +1,13 @@
+#!/bin/sh -login
+#PBS -l walltime=2:00:00,nodes=01:ppn=8,mem=40gb
+#PBS -t 17-24
+#PBS -q main
+#PBS -A ged
+
+module load velvet
+
+WORKING_DIR=/mnt/scratch/howead/permafrost-all-data/non-lump-fastas
+
+python ~/scripts/multi-velvet/multi-velvet.py $((PBS_ARRAYID * 2 + 1)) $WORKING_DIR/*fa
+
+

@@ -1,0 +1,21 @@
+#!/bin/sh -login
+#PBS -l walltime=2:00:00,nodes=01:ppn=8,mem=40gb
+#PBS -t 1
+#PBS -q main
+#PBS -A ged
+
+module load bioinformatics-MODULES
+module load velvet
+
+WORKING_DIR=/mnt/scratch/howead/iowa-prairie-hiseq/keep-files/non-lump-fastas
+
+cd $WORKING_DIR
+
+seq_file=`head -${PBS_ARRAYID} redo_list.txt | tail -1 | awk '{print $1}'`
+kmer_len=`head -${PBS_ARRAYID} redo_list.txt | tail -1 | awk '{print $2}'`
+
+velveth ${seq_file}.ass.${kmer_len} ${kmer_len} -fasta -short ${seq_file}.se -shortPaired {seq_file}.pe 
+
+velvetg  ${seq_file}.ass.${kmer_len} -exp_cov auto -cov_cutoff auto -scaffolding no
+
+ 

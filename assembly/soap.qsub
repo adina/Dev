@@ -1,0 +1,14 @@
+#!/bin/bash -login
+#PBS -l walltime=150:00:00,nodes=01:ppn=1,mem=30gb
+#PBS -q main
+#PBS -A ged-intel11
+#PBS -t 1-46
+
+module load SOAPdenovo
+
+cd /mnt/scratch/howead/hmp-mock/diginorm2/partitioned-fastas/soap
+
+cmd=`tail -n ${PBS_ARRAYID} commands-soap.txt | head -n 1`
+echo ${cmd}
+${cmd}
+qstat -f ${PBS_JOBID} >> stats-soap.txt

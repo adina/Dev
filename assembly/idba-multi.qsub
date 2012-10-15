@@ -1,0 +1,16 @@
+#!/bin/bash -login
+#PBS -l walltime=150:00:00,nodes=01:ppn=1,mem=30gb
+#PBS -q main
+#PBS -M adina.chuang@gmail.com
+#PBS -m abe
+#PBS -A ged-intel11
+#PBS -t 1-46
+
+cd /mnt/scratch/howead/hmp-mock/diginorm2/partitioned-fastas/idba
+
+cmd=`tail -n ${PBS_ARRAYID} commands-idba.txt | head -n 1`
+echo ${cmd}
+${cmd}
+qstat -f ${PBS_JOBID} >> stats-idba.txt
+
+

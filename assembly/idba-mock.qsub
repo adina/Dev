@@ -1,0 +1,10 @@
+#!/bin/bash -login
+#PBS -l walltime=150:00:00,nodes=01:ppn=1,mem=80gb
+#PBS -q main
+#PBS -M adina.chuang@gmail.com
+#PBS -m abe
+#PBS -A ged-intel11
+
+cd /mnt/scratch/howead/hmp-mock/raw-assembly-idba
+
+/mnt/home/howead/software/idba-0.18/bin/idba -r mock-combined.fa -o mock-combined.fa.idba --mink 25 --maxk 50 --minCount 0

@@ -7,7 +7,7 @@ localdir = os.path.dirname(__file__)
 localdir = os.path.abspath(localdir)
 print localdir
 
-COMMAND="/mnt/home/howead/scripts/merge-assemblies/cdhit.sh %(filename)s" 
+COMMAND="./cdhit.sh %(filename)s" 
 
 
 N_PROCESSES = 8

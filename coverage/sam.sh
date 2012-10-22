@@ -1,0 +1,1 @@
+for f in *sam; do samtools view -b -S $f -t ../700099803.khmer.fa > $f.bam; done 

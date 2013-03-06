@@ -7,18 +7,24 @@ def read_partition_file(fp):
         name, partition_id = name.rsplit('\t', 1)
         yield n, name, int(partition_id), record['sequence']
 
-select_pid = [6479, 3]
+select_pid = []
 
+for line in open(sys.argv[1]):
+    line = line.rstrip()
+    select_pid.append(int(line))
+print select_pid
 d = {}
 
-for n, name, pid, seq in read_partition_file(open(sys.argv[1])):
-    if pid in select_pid:
-        dat = [name, pid, seq] 
-        if d.has_key(pid):
-            d[pid].append(dat)
-        else:
-            d[pid] = [dat]
-
+for file in sys.argv[2:]:
+    filein = open(file, 'r')
+    for n, name, pid, seq in read_partition_file(filein):
+        if pid in select_pid:
+            dat = [name, pid, seq] 
+            if d.has_key(pid):
+                d[pid].append(dat)
+            else:
+                d[pid] = [dat]
+print d
 file_d = {}
 for n, x in enumerate(d.keys()):
     fp = open('pid-%s.fa' % x, 'w')

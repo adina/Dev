@@ -1,0 +1,1 @@
+for x in Sample*E*; do for y in $x/*merged.fa $x/*unpaired-trimmed.fa $x/*unpaired.fasta; do echo blastx -num_threads 4 -outfmt 6 -query $y -db refseq/viral.1.protein.faa -out $y.refseqvirus.blastpout ; done;done

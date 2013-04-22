@@ -1,0 +1,1 @@
+for x in *R1*gz; do echo bowtie2 -x aggregates-combined-assembly1.fa.cazyhits.fa -1 $x -2 ${x%R1_*}R2_001.fastq.gz -S $x.sam; done

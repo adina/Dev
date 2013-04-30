@@ -1,0 +1,15 @@
+1)  Create pickled dictionaries for your MG-RAST results using your 550*mapping.gz and 650*ontology*gz
+
+python ~/software/Dev/mgrast-m5nr/contig-to-function.py 550.cluster.aa90.mapping.gz 650.superblat.expand.ontology.gz
+
+2)  Use find-core scripts to generate count of each contig between multiple samples, i.e.,: EC4-all-coverage.txt:
+
+EC4_850_[cov=7.000000]	  27 11	      35    11 0    1
+EC4_248_[cov=6.000000]	  0  9	      9	    22 2    0
+EC4_96_[cov=5.000000]	  0  2	      2	    10 6    0
+EC4_411_[cov=3.000000]	  8  67	      13    14 11   10
+EC4_927_[cov=8.000000]	  37 13	      58    21 0    0
+
+3) Generate a table of info of subsystems for phyloseq
+
+python /root/software/Dev/mgrast-m5nr/insert-annotations-phyloseq-format.py EC4-all-coverage.txt

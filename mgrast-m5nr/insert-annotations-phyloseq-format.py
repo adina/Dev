@@ -26,27 +26,25 @@ d_ontology = pickle.load(open("ontology.p", "rb"))
 fp = open(sys.argv[1] + ".phyloseq", 'w')
 
 
-for line in open(sys.argv[1]):
-    dat = line.rstrip().split('\t')
-    dat2 = line.rstrip().split('\t')
-    contig = dat[0]
-    sample_id = contig.split('_')[0]
-    if d_function.has_key(contig):
-        func_list = collections.Counter(d_function[contig])
-        ont_list = collections.Counter(d_ontology[contig])
-        best_hit_func = sort_dict_by_value(func_list)
-        best_hit_ont = sort_dict_by_value(ont_list)
-        best_hit_func_ann = annotation_func_d[best_hit_func]
-        best_hit_ont_ann = annotation_ont_d[best_hit_ont]
-        for level1 in best_hit_ont_ann:
-            for level2 in best_hit_ont_ann[level1]:
-                for level3 in best_hit_ont_ann[level1][level2]:
-                    for level4 in best_hit_ont_ann[level1][level2][level3]:
-                        for function in best_hit_ont_ann[level1][level2][level3][level4]:
-                            print >>fp, '%s\t%s\t%s\t%s\t%s\t%s\t%s\t' % (contig, sample_id, level1, level2, level3, level4, function)
+for n, line in enumerate(open(sys.argv[1])):
+    if n > 0:
+        dat = line.rstrip().split('\t')
+        dat2 = line.rstrip().split('\t')
+        contig = dat[0]
+        sample_id = contig.split('_')[0]
+        if d_function.has_key(contig):
+            func_list = collections.Counter(d_function[contig])
+            ont_list = collections.Counter(d_ontology[contig])
+            best_hit_func = sort_dict_by_value(func_list)
+            best_hit_ont = sort_dict_by_value(ont_list)
+            best_hit_func_ann = annotation_func_d[best_hit_func]
+            best_hit_ont_ann = annotation_ont_d[best_hit_ont]
+            for level1 in best_hit_ont_ann:
+                for level2 in best_hit_ont_ann[level1]:
+                    for level3 in best_hit_ont_ann[level1][level2]:
+                        for level4 in best_hit_ont_ann[level1][level2][level3]:
+                            fp.write('%s\t%s\t%s\t%s\t%s\t%s\n' % (contig, sample_id, level1, level2, level3, level4))
     
-    else:
-        best_hit_func, best_hit_func_ann = "N\A", "N\A"
-        best_hit_ont, best_hit_ont_ann = "N\A", "N\A"
-        print >> fp, '%s\t%s\tNA\tNA\tNA\tNA\tNA\t' % (contig, sample_id)
+        else:
+            fp.write('%s\t%s\tNA\tNA\tNA\tNA\n' % (contig, sample_id))
     

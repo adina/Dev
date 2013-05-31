@@ -1,0 +1,24 @@
+#!/bin/bash -login
+#PBS -l walltime=24:00:00,nodes=01:ppn=4,mem=20gb
+#PBS -q main
+#PBS -m abe
+#PBS -A ged-intel11
+
+cd /mnt/scratch/howead/howead/metat/All_MetaT_March2013
+
+module load SAMTools
+module load NumPy
+module load PySAM
+
+ASSEMBLY=$1
+READ1=$2
+READ2=$3
+
+bowtie2-build $ASSEMBLY $ASSEMBLY
+bowtie2 -x $ASSEMBLY -1 $READ1 -2 $READ2 -S $ASSEMBLY.$READ1.map.sam -p 4
+samtools view -b -S $ASSEMBLY.$READ1.map.sam -t $ASSEMBLY > $ASSEMBLY.$READ1.map.bam
+samtools sort $ASSEMBLY.$READ1.map.bam $ASSEMBLY.$READ1.map.bam.sorted
+
+#samtools index metat.mapping.sorted.bam
+
+#python /mnt/home/howead/Dev/coverage/sam-to-coverage.py metat.mapping.sorted.bam All_MetaT_contigs_with_abundance.fa

@@ -6,7 +6,7 @@ fp = open(sys.argv[2], 'w')
 for n, line in enumerate(open(sys.argv[1])):
     key, median, avg, minl, maxl, summy, total, cov_rat = line.rstrip().split(' ')
 
-    if int(maxl) >= 2:
+    if float(median) >= 2:
         if int(summy) >= 100:
             fp.write('%s' % line)
             count_ok += 1

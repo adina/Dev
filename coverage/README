@@ -1,0 +1,59 @@
+/mnt/scratch/howead/howead/metat/map-to-genomes
+
+You've got contigs
+
+allgenomes.fasta
+
+You've got mapped reads (transcripts) to reference
+
+#bowtie2-build allgenomes.fasta allgenomes.fasta
+bowtie2 -x allgenomes.fasta -1 MetaT_raw_R1.fastq -2 MetaT_raw_R2.fastq -S metat_mapped_allgenomes.sam -p 4 
+
+You've converted that to a sorted bam and then coverted files to bed
+
+Reference file --> bed
+Bam file --> bed
+
+In this case you had annotations at specific regions, so you converted the annotations to bed file and this became your annotated reference file 
+
+Coverage bed was run (reference file  is the -b file)
+
+coverageBed -a A.bed -b B.bed -dchr1  0  10  B  1  1chr1  0  10  B  2  1chr1  0  10  B  3  1chr1  0  10  B  4  2chr1  0  10  B  5  3chr1  0  10  B  6  3chr1  0  10  B  7  3chr1  0  10  B  8  3chr1  0  10  B  9  1 
+
+The bam file was converted to a bed file:
+
+AE000513        85042   85142   HWI-ST957:159:D0KHMACXX:6:2313:20123:97247/2    0       -
+AE000513        85047   85147   HWI-ST957:159:D0KHMACXX:6:2112:2362:44310/2     0       -
+AE000513        85049   85149   HWI-ST957:159:D0KHMACXX:5:2105:20033:34087/2    0       -
+AE000513        85049   85149   HWI-ST957:159:D0KHMACXX:6:2209:8605:17747/1     0       -
+AE000513        85050   85150   HWI-ST957:159:D0KHMACXX:5:2303:1714:57391/1     0       +
+AE000513        85056   85156   HWI-ST957:159:D0KHMACXX:5:1311:7528:84808/2     0       +
+
+
+Run bedcoverage-to-coverage.py or bedcoverage-to-coverage2.py based on whether or not annotation exist resulting in the following
+
+metat.counts  metat-noann.counts 
+
+==> metat.counts <==
+AE000513_100030_100338 0.0 0.0 0 0 0 308 0.0
+AE000513_1001875_1002834 0.0 0.0 0 0 0 959 0.0
+AE000513_1003017_1004996 0.0 0.0 0 0 0 1979 0.0
+AE000513_100371_100802 0.0 0.0 0 0 0 431 0.0
+AE000513_1005049_1005768 0.0 0.0 0 0 0 719 0.0
+AE000513_1005906_1006388 0.0 0.0 0 0 0 482 0.0
+AE000513_1006525_1007055 0.0 0.0 0 0 0 530 0.0
+AE000513_1007146_1007775 0.0 0.0 0 0 0 629 0.0
+AE000513_1008232_1009407 0.0 0.0 0 0 0 1175 0.0
+AE000513_1009495_1010844 0.0 0.0 0 0 0 1349 0.0
+
+==> metat-noann.counts <==
+AE000513_1000523_1001875 0.0 0.0 0 0 0 1352 0.0
+AE000513_1002834_1003017 0.0 0.0 0 0 0 183 0.0
+AE000513_100338_100371 0.0 0.0 0 0 0 33 0.0
+AE000513_1004996_1005049 0.0 0.0 0 0 0 53 0.0
+AE000513_1005768_1005906 0.0 0.0 0 0 0 138 0.0
+AE000513_1006388_1006525 0.0 0.0 0 0 0 137 0.0
+AE000513_1007055_1007146 0.0 0.0 0 0 0 91 0.0
+AE000513_1007775_1008232 0.0 0.0 0 0 0 457 0.0
+AE000513_100802_101418 0.0 0.0 0 0 0 616 0.0
+AE000513_1009407_1009495 0.0 0.0 0 0 0 88 0.0

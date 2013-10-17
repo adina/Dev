@@ -1,0 +1,3 @@
+1.  Make list of cazy families
+2.  get.py cazy.list > cazy.list.ann
+3.  get-ec2.py cazy.list.ann > maps.txt

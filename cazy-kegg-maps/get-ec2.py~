@@ -1,0 +1,9 @@
+import sys
+import re
+
+fp = open("test2.txt", 'w')
+
+for line in open("test"):
+    x = [m.start() for m in re.finditer('EC ', line.rstrip())]
+    for each in x:
+        print line[each+3:each+14].split(')')[0], 'red', ',', 'yellow'

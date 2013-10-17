@@ -1,0 +1,7 @@
+import sys
+import re
+
+for line in open("test"):
+    x = [m.start() for m in re.finditer('EC ', line.rstrip())]
+    for each in x:
+        print line[each]:line[each+5]

@@ -1,0 +1,35 @@
+I think I should write this down for reference so here we go (try this on a few genomes first):
+
+1)  You need to choose where you want these downloaded - let me suggest HPC /mnt/research/tiedjelab
+
+You need to install JAVA v1.6 on the HPC
+
+>cd <your home directory>
+>wget http://javadl.sun.com/webapps/download/AutoDL?BundleId=47147
+>chmod a+x jre*
+>./jre*
+
+2)  Grab some of Jordan (RDP's) tools and put them on HPC  (I'll forward them to you in another email)
+
+3) Generate a text file of the Genbank IDs (Column H in your spreadsheet)
+
+i.e. your text file would look like...
+AE001437
+AE001825
+AE003849
+
+4)  Fetch the xmls for these using the fetch_genome_xml.py from Jordan
+>mkdir <fetched_xm> 
+*note that the directory is named fetched_xml but you can name it whatever
+
+>python fetch_genome_xml.py <genome_id_list> <fetched_xml>
+
+5) Do some text editing magic (this updates the link in the xml files)
+
+sed -i'' -r 's/<GBSet/<GBSet xmlns=\"http:\/\/www.ncbi.nlm.nih.gov\/soap\/eutils\/efetch_seq\">/g' test/*.xml
+
+6) Run java genome_extract
+
+<java directory>/bin/java -jar <directory-of-jordan-tools>/KmerFiltering.jar genome_extract <fetched_xml> <output_genomes_directory>
+
+7) You should see a new directory with genes, raw assembled sequences, and maps between the two in the directory.

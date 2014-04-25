@@ -1,0 +1,1 @@
+curl -H "auth: "http://api.metagenomics.anl.gov/1/annotation/similarity/mgm4521310.3?&type=organism&source=RefSeq"

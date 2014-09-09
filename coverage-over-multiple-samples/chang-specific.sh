@@ -1,0 +1,22 @@
+python average-se-norm.py *DR1_* *DR2_* *DR3_* > 50_2-12_total
+python average-se-norm.py *DR4_* *DR5_* *DR6_* > 50_3-6_total
+python average-se-norm.py *DR7_* *DR8_* *DR9_* > 50_3-27_total
+python average-se-norm.py *DR10_* *DR11_* *DR12_* > 77_2-18_total
+python average-se-norm.py *DR13_* *DR14_* *DR15_* > 77_3-12_total
+python average-se-norm.py *DR16_* *DR17_* *DR18_* > 77_4-2_total
+python average-se-norm.py *DR19_* *DR20_* *DR21_* > 50_2-12_vlp
+python average-se-norm.py *DR22_* *DR23_* *DR24_* > 50_2-12_ind
+python average-se-norm.py *DR25_* *DR27_* *DR28_* > 50_2-13_vlp
+python average-se-norm.py *DR29_* *DR30_* *DR31_* > 50_2-13_ind
+python average-se-norm.py *DR32_* *DR33_* *DR34_* > 50_3-6_vlp
+python average-se-norm.py *DR35_* *DR36_* *DR37_* > 50_3-6_ind
+python average-se-norm.py *DR38_* *DR39_* *DR40_* > 50_3-27_vlp
+python average-se-norm.py *DR41_* *DR42_*  > 50_3-27_ind
+python average-se-norm.py *DR43_* *DR44_* *DR45_* > 77_2-18_vlp
+python average-se-norm.py *DR46_* *DR47_* *DR48_* > 77_2-18_ind
+python average-se-norm.py *DR49_* *DR50_* *DR51_* > 77_2-19_vlp
+python average-se-norm.py *DR52_* *DR53_* *DR54_* > 77_2-19_ind
+python average-se-norm.py *DR55_* *DR56_* *DR57_* > 77_3-12_vlp
+python average-se-norm.py *DR58_* *DR59_* *DR60_* > 77_3-12_ind
+python average-se-norm.py *DR61_* *DR62_* *DR63_* > 77_4-2_vlp
+python average-se-norm.py *DR64_* *DR65_* *DR66_* > 77_4-2_ind

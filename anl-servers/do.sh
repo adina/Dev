@@ -3,4 +3,5 @@ apt-get -y install git emacs mercurial less python-matplotlib unzip bzip2 zlib1g
 apt-get -y install python-numpy python-scipy 
 
 #Installing R
+sudo apt-get upgrade
 apt-get install r-base

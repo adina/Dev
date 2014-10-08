@@ -12,5 +12,5 @@ cd screed
 python setup.py install
 
 cd
-echo export PYTHONPATH=/mnt/khmer/python >> /root/.bashrc
-export PYTHONPATH=/mnt/khmer/python >> /root/.bashrc
+echo export PYTHONPATH=/root/python >> /root/.bashrc
+export PYTHONPATH=/root/python >> /root/.bashrc

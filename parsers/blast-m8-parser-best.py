@@ -10,4 +10,4 @@ for line in open(sys.argv[1]):
         continue
     else:
         d[query] = hit
-    print line, 
+        print line, 

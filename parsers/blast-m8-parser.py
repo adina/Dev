@@ -10,4 +10,4 @@ for line in open(sys.argv[1]):
 
     if evalue < 1e-5:
         if length > 100:
-            print line
+            print line,

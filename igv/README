@@ -1,0 +1,3 @@
+convert gb to gff
+run parse.py
+then parse2.py

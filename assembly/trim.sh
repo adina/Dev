@@ -1,0 +1,1 @@
+for x in *-1*gz; do echo java -jar /usr//local/bin/trimmomatic-0.27.jar PE ${x%-*}-1.fq.gz ${x%-*}-2.fq.gz $x_s1_pe $x_s1_se $x_s2_pe $x_s2_se ILLUMINACLIP:~/illuminaClipping.fa:2:30:10; done

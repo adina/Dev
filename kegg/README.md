@@ -1,17 +1,15 @@
+From BLAST output to gene summary:
 
-input				
-ORF				KO	pathway	sampleA	sampleB
-A				a	x,y	12	20
-B				b	x	1	30
-C				a	x,z	2	5
+python count_kos.py NOHUMAN_kegg.orf.count.tsv > NOHUMAN_kegg.orf.count.gene.tsv
 
+From gene summary to include KO summary:
+python kegg_genes_to_ko.py /mnt/research/germs/kegg/genes/ko/ko_genes.list NOHUMAN_kegg.orf.count.gene.tsv NOHUMAN_kegg.orf.count.ko.tsv
 
+From Gene/Ko summary to KO counts:
+python count_kos.py NOHUMAN_kegg.orf.count.ko.tsv > NOHUMAN_kegg.orf.count.ko.summary.tsv
 
-output							
-sampleA							sampleB		
-Ko_a							14		25	
-Ko_b							1		30			
-pathway_x						15		55				
-pathway_y						12		20					
-pathway_z						2		5						
+From KO counts to include pathway:
+python kegg_ko_to_path.py /mnt/research/germs/kegg/genes/ko/ko_pathway.list NOHUMAN_kegg.orf.count.ko.summary.tsv NOHUMAN_kegg.orf.count.ko.summary.path.tsv
 
+Count pathways:
+python count_paths.py NOHUMAN_kegg.orf.count.ko.summary.path.tsv > NOHUMAN_kegg.orf.count.ko.summary.path.summary.tsv
